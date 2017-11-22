@@ -1,0 +1,13 @@
+[Webservers]
+10.2.78.104
+10.2.78.105
+
+[Database:children]
+Database-Master
+Database-Slave
+
+[Database-Master]
+10.2.78.102
+
+[Database-Slave]
+10.2.78.103

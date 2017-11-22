@@ -1,0 +1,6 @@
+---
+- hosts: Webservers, Database
+  become: yes
+  roles:
+    - role-apache
+    - role-wordpress

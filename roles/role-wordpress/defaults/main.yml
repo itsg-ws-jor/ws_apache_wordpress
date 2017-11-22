@@ -1,0 +1,6 @@
+---
+# defaults file for role-wordpress
+db_user: "{{ vault_db_user }}"
+db_user_pw: "{{ vault_db_user_pw }}"
+db_host: "10.2.78.102"
+db_name: "wordpress"

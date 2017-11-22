@@ -1,0 +1,39 @@
+---
+# tasks file for role-wordpress
+- name: Include ansible wordpress vault
+  include_vars: "vars/vault-wordpress.yml"
+
+- name: Create wordpress documentroot {{ web_docroot }}
+  file:
+    path: "{{ web_docroot }}"
+    state: directory
+    owner: "{{ web_owner }}"
+    group: "{{ web_group }}"
+    mode: 0755
+
+- name: Download wordpress and unarchiv
+  unarchive:
+    src: https://wordpress.org/latest.zip
+    remote_src: yes
+    dest: "{{ web_docroot }}"
+    owner: "{{ web_owner }}"
+    group: "{{ web_group }}"
+
+- name: Create pw salt
+  shell: 'pwgen -s 65 8'
+  register: pw_salts
+  args:
+    executable: /bin/bash
+
+- name: Configure wordpress
+  template:
+    src: "wp-config.php.j2"
+    dest: "{{ web_docroot }}/wp-config.php"
+    owner: "{{ web_owner }}"
+    group: "{{ web_group }}"
+    mode: 0644
+
+- name: Remove sample wp-config
+  file:
+    path: "{{ web_docroot }}/wp-config-sample.php"
+    state: absent
