@@ -13,5 +13,5 @@ apache_vhosts:
 
 packages:
   - pwgen
-  - php7
-  - php7-mysql
+  - php7.0
+  - php7.0-mysql
