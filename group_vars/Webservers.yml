@@ -1,6 +1,8 @@
 ---
 apache_packages_state: latest
 
+#web_owner: "root"
+#web_group: "root"
 web_owner: "wwww-data"
 web_group: "wwww-data"
 web_docroot: "/var/www/html/wordpress"

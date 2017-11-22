@@ -12,6 +12,7 @@
     mode: 0755
 
 - name: Download wordpress and unarchiv
+  become: yes
   unarchive:
     src: https://wordpress.org/latest.zip
     remote_src: yes
