@@ -42,7 +42,8 @@
 
 - name: Set correct permissions
   shell: "chown -R {{ web_owner }}:{{ web_group }} {{ web_docroot }}"
-  args: /bin/bash
+  args:
+    executable: /bin/bash
 #  file:
 #    path: "{{ web_docroot }}"
 #    owner: "{{ web_owner }}"
