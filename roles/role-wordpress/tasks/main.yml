@@ -41,11 +41,12 @@
     state: absent
 
 - name: Set correct permissions
-  shell: "chown -R {{ web_owner }}:{{ web_group }} {{ web_docroot }}"
-  args:
-    executable: /bin/bash
-#  file:
-#    path: "{{ web_docroot }}"
-#    owner: "{{ web_owner }}"
-#    group: "{{ web_group }}"
-#    recurse: yes
+  file:
+    path: "{{ web_docroot }}"
+    owner: "{{ web_owner }}"
+    group: "{{ web_group }}"
+    recurse: yes
+
+#  shell: "chown -R {{ web_owner }}:{{ web_group }} {{ web_docroot }}"
+#  args:
+#    executable: /bin/bash
