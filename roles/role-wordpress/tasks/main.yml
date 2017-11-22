@@ -22,7 +22,7 @@
     name: "{{ item }}"
     state: latest
     update_cache: yes
-    with_items: {{ packages }}
+  with_items: "{{ packages }}"
 
 - name: Create pw salt
   shell: "/usr/bin/pwgen -s 65 8"
