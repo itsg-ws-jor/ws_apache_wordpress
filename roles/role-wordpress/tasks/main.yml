@@ -4,11 +4,10 @@
   include_vars: "vars/vault-wordpress.yml"
 
 - name: Create wordpress documentroot {{ web_docroot }}
+  become: yes
   file:
     path: "{{ web_docroot }}"
     state: directory
-    owner: "{{ web_owner }}"
-    group: "{{ web_group }}"
     mode: 0755
 
 - name: Download wordpress and unarchiv
@@ -17,11 +16,15 @@
     src: https://wordpress.org/latest.zip
     remote_src: yes
     dest: "{{ web_docroot }}"
-    owner: "{{ web_owner }}"
-    group: "{{ web_group }}"
+
+- name: Install pwgen
+  apt:
+    name: pwgen
+    state: latest
+    update_cache: yes
 
 - name: Create pw salt
-  shell: 'pwgen -s 65 8'
+  shell: "/usr/bin/pwgen -s 65 8"
   register: pw_salts
   args:
     executable: /bin/bash
@@ -30,11 +33,18 @@
   template:
     src: "wp-config.php.j2"
     dest: "{{ web_docroot }}/wp-config.php"
-    owner: "{{ web_owner }}"
-    group: "{{ web_group }}"
     mode: 0644
 
 - name: Remove sample wp-config
   file:
     path: "{{ web_docroot }}/wp-config-sample.php"
     state: absent
+
+- name: Set correct permissions
+  shell: "chown -R {{ web_owner }}:{{ web_group }} {{ web_docroot }}"
+  args: /bin/bash
+#  file:
+#    path: "{{ web_docroot }}"
+#    owner: "{{ web_owner }}"
+#    group: "{{ web_group }}"
+#    recurse: yes

@@ -1,6 +1,9 @@
 ---
-- hosts: Webservers, Database
+- hosts: Webservers
   become: yes
+  pre_tasks:
+    - name: Load variables
+      include_vars: "group_vars/Webservers.yml"
   roles:
     - role-apache
     - role-wordpress
