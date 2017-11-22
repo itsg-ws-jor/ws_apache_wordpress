@@ -17,11 +17,12 @@
     remote_src: yes
     dest: "{{ web_docroot_base }}"
 
-- name: Install pwgen
+- name: Install packages
   apt:
-    name: pwgen
+    name: {{ item }}
     state: latest
     update_cache: yes
+    with_items: {{ packages }}
 
 - name: Create pw salt
   shell: "/usr/bin/pwgen -s 65 8"
