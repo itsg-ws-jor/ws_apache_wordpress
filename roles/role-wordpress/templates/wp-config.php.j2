@@ -47,14 +47,14 @@ define('DB_COLLATE', '');
  * @since 2.6.0
  */
 
-define('AUTH_KEY',         '{{ pw_salts[0] }}');
-define('SECURE_AUTH_KEY',  '{{ pw_salts[1] }}');
-define('LOGGED_IN_KEY',    '{{ pw_salts[2] }}');
-define('NONCE_KEY',        '{{ pw_salts[3] }}');
-define('AUTH_SALT',        '{{ pw_salts[4] }}');
-define('SECURE_AUTH_SALT', '{{ pw_salts[5] }}');
-define('LOGGED_IN_SALT',   '{{ pw_salts[6] }}');
-define('NONCE_SALT',       '{{ pw_salts[7] }}');
+define('AUTH_KEY',         '{{ pw_salts.stdout_lines[0] }}');
+define('SECURE_AUTH_KEY',  '{{ pw_salts.stdout_lines[1] }}');
+define('LOGGED_IN_KEY',    '{{ pw_salts.stdout_lines[2] }}');
+define('NONCE_KEY',        '{{ pw_salts.stdout_lines[3] }}');
+define('AUTH_SALT',        '{{ pw_salts.stdout_lines[4] }}');
+define('SECURE_AUTH_SALT', '{{ pw_salts.stdout_lines[5] }}');
+define('LOGGED_IN_SALT',   '{{ pw_salts.stdout_lines[6] }}');
+define('NONCE_SALT',       '{{ pw_salts.stdout_lines[7] }}');
 
 
 /**#@-*/
