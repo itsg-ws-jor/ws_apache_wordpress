@@ -5,9 +5,9 @@
 
 - name: Check if WordPress is already installed
   register: wp_installed_status
-    check_mode: no
-    stat:
-      path="{{ web_docroot_base_wp }}/wp-config.php"
+  check_mode: no
+  stat:
+    path="{{ web_docroot_base_wp }}/wp-config.php"
 
 - name: Download wordpress and unarchiv
   when: not wp_installed_status.stat.exists or force == true
