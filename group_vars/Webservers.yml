@@ -1,16 +1,18 @@
 ---
+### role-apache ###
+#
 apache_packages_state: latest
-apache_remove_default_vhost: true
-
-web_owner: "www-data"
-web_group: "www-data"
-web_docroot_base: "/var/www/html/"
+web_docroot_base: "/var/www/html"
 web_docroot_base_wp: "{{ web_docroot_base}}/wordpress"
-
+apache_remove_default_vhost: true
 apache_listen_port: 8080
 apache_vhosts:
   - {servername: "{{ ansible_default_ipv4.address }}", documentroot: "{{ web_docroot_base_wp }}" }
 
+### role-wordpress ###
+#
+web_owner: "www-data"
+web_group: "www-data"
 packages:
   - pwgen
   - php7.0
